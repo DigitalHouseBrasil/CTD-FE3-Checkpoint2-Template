@@ -13,7 +13,7 @@ const Home = () => {
     <>
       <h1>Home</h1>
       <div className="card-grid container">
-        <Card key={'dentist.matricula'} />
+        <Card />
       </div>
     </>
   );
