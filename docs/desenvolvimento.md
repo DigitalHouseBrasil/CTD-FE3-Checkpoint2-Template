@@ -1,11 +1,11 @@
 # Desenvolvimento
 
 ## Índice
-* [Iniciando la App](#iniciando-o-app)
-* [Dependências](#Dependências)
+* [Iniciando o App](#iniciando-o-app)
+* [Dependências](#dependências)
 * [Recomendações a Seguir](#recomendações)
 
-## Iniciando la App
+## Iniciando o App
 
 Instalamos as dependências
 

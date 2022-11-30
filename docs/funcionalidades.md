@@ -64,6 +64,13 @@ O seguinte deve ser levado em consideração:
   * Sobrenome
   * Matricula (id)
   * Nome do usuário
+Nessa página também deverá ter um botão de marcar consulta que quando clicado abre um modal.
+
+### Página 3.1: Marcar consulta
+
+Essa página deve permitir selecionar de dois selects um dentista e um paciente, além de poder selecionar uma data e hora para a consulta.
+
+Quando o botão de marcar consulta for clicado, deve ser feito uma chamada api passando os dados necessários e o token. Se ocorrer tudo bem, deverá aparecer um aviso de sucesso e o usuário será redirecionado pra home, se não, aparecerá um aviso de erro e o usuário continuará na mesma tela
 
 ## Resultado final
 
