@@ -1,88 +1,70 @@
 ## Funcionalidades
 
 ## Indice
-* [Funcionalidades obligatorias](#funcionalidades-obligatorias)
-  * [Rutas](#rutas)
+* [Funcionalidades obrigatórias](#funcionalidades-obrigatórias)
+  * [Rotas](#rotas)
     * [Página 1: Inicio (/home)](#pagina-1-inicio-home)
-    * [Página 2: Contacto (/contact)](#pagina-2-contacto)
-    * [Página 3: Detalle del dentista (/dentist/:id)](#pagina-3-detalle-del-dentista)
-    * [Página 4: Destacados (/favs)](#pagina-4-destacados)
+    * [Página 2: Login (/login)](#pagina-2-login)
+    * [Página 3: Detalhe do dentista (/dentist/:id)](#pagina-3-detalhe-do-dentista)
+      * [Página 3.1: Marcar consulta (/dentist/:id)](#pagina-3.1-consulta)
 * [Resultado final](#resultado-final)
 
-## Funcionalidades obligatorias
+## Funcionalidades obrigatórias
 
-Las siguientes funcionalidades son requisitos mínimos necesarios para la aprobación del final y es fundamental que funcionen correctamente.
+As seguintes funcionalidades são requisitos mínimos necessários para a aprovação da final e é fundamental que funcionem corretamente.
 
-**La aplicación deberá contar con cuatro (4) páginas: Home, Contacto, Detalle de cada dentista, Destacados**
+**O requerimento deve ter 3 (quatro) páginas: Home, Login, Detalhe de cada dentista e um modal de marcação de consulta**
 
-**La correcta navegacion entre las paginas por medio de Links propios de React Router sera obligatoria para la aprobacion**
+**A navegação correta entre as páginas através dos Links próprios do React Router será obrigatória para aprovação**
 
-**Es crucial la presencia homogenea en todas las paginas del [Navbar](/src/Components/Navbar.jsx) y [Footer](/src/Components/Footer.jsx)**
+**A presença homogênea em todas as páginas da [Navbar](/src/Components/Navbar.jsx) e [Footer](/src/Components/Footer.jsx)** é crucial**
 
-### Creación del Context
-Deberán crear un contexto global en su aplicación que ponga a disposición la siguiente información:
-* Tema de colores para toda la app (claro u oscuro)
-* Información traída por la API (pueden utilizar fetch o axios para realizar la llamada)
-* Para el manejo y actualización del estado global deberán implementar el hook useReducer. Con dicho hook deberán implementar el cambio de tema de colores (con un botón en la app específico para ello dentro de Navbar), de claro a oscuro y viceversa.
+### Criação do Contexto
+Deverá ser criado um contexto global em seu aplicativo que disponibilize as seguintes informações:
+* Tema de cores para todo o aplicativo (claro ou escuro)
+* Informação trazida pela API (você pode usar fetch ou axios para fazer a chamada)
+* Para gerenciar e atualizar o estado global, você deve implementar o hook useReducer. Com esse hook é necessário implementar a mudança do tema de cores (com um botão no app específico para isso dentro da Navbar), de claro para escuro e vice-versa, salvar o token de autenticação no localstorage e retorna-lo.
 
-###  Creación de rutas
-Utilizando React Router deberán crear las siguientes direcciones descriptas en [rutas](#rutas)
-
-
-### Funcionalidad de destacados
-* Cada card renderizada debe tener la opción de poder agregarse a destacados.
-* Deberan guardar las cards destacadas en la sesión actual del localStorage
-* Manejar dicho comportamiento con el hook useReducer 
+### Criação de rotas
+Usando o React Router você deve criar os seguintes endereços descritos em [routes](#rotas)
 
 ### Estilos
-En base al tema (claro u oscuro) consumido del contexto global, estilar las cuatro [rutas](#rutas) de la App (asignar determinados estilos si es “dark” o “light”).
+Com base no tema (claro ou escuro) consumido do contexto global, estilize os quatro [rotas](#rotas) do App (atribua certos estilos se for “dark” ou “light”).
 
-###  Testing
-Realizar por lo menos 5 tests cases que verifiquen alguna funcionalidad de la aplicación (ten en cuenta que no solo se evaluará la cantidad, sino a esta altura también la efectividad o relevancia del test case elegido)
+### Teste
+Realize pelo menos 5 casos de teste que verifiquem alguma funcionalidade do aplicativo (lembre-se de que não apenas a quantidade será avaliada, mas também a eficácia ou relevância do caso de teste escolhido neste momento)
 
-
-
-## Rutas
+## Rotas
 ### Pagina 1: Inicio Home
 
-En esta página se deberá mostrar un listado en forma de grilla de los dentistas devueltos por la API
+Esta página deve mostrar uma lista em forma de grade dos dentistas retornados pela API
 
-Se deberá tener en cuenta lo siguiente:
-* Deberá ser la página de inicio de la web.
-* La grilla deberá mostrar una [Card](/src/Components/Card.jsx) por cada dentista devuelto por la API.
-* Cada dentista deberá contener `name` y `username`, junto con un boton `ADD FAV` (para agregar al localStorage como fav) y un `link` que permita su navegacion a la pagina _dentist/:id_ en base al id del dentista.
-* Cada Card debe integrar la funcionalidad de agregar a destacados
+O seguinte deve ser levado em consideração:
+* Deve ser a página inicial do site.
+* A grade deve mostrar um [Card](/src/Components/Card.jsx) para cada dentista retornado pela API.
+* Cada dentista deve conter `name` e `username`, juntamente com um `link` que permite navegar para a página _dentist/:id_ com base no id do dentista.
 
-### Pagina 2: Contacto
+### Pagina 2: Login
 
-En esta pagina deberán implementar un [Form](/src/Components/Form.jsx) (con sus validaciones pertinentes) que capture la información del usuario que desea contactar con la empresa. Los campos serán los siguientes:
-* Nombre completo (con longitud mayor a 5)
-* Email (con formato correcto de email)
-* En caso de haber un error mostrar el siguiente mensaje de error: **Por favor verifique su información nuevamente**
-* Una vez enviado el formulario deberán	 mostrar un mensaje de éxito que contenga el siguiente formato: **Gracias _[nombre del usuario]_, te contactaremos cuando antes vía mail**
-
-
-### Pagina 3: Detalle del dentista 
-
-En esta página se deberá mostrar un detalle de un dentista individual de la API. 
-
-Se deberá tener en cuenta lo siguiente:
-* Deberá estar en la ruta `/dentist/:id`.
-* La página deberá indicar al menos la siguiente información:
-  * Nombre del personaje
-  * Email
-  * Telefono
-  * Sitio web
+Nesta página deve-se implementar um [Form](/src/Components/LoginForm.jsx) (com suas respectivas validações) que capture as informações do usuário que deseja logar na aplicação. Os campos serão os seguintes:
+* Login (com comprimento maior que 5)
+* Senha
+* Em caso de erro, exiba a seguinte mensagem de erro: **Verifique suas informações novamente**
+* Uma vez enviado o formulário, o token de autenticação deve ser salvo no localstorage através do context api e o usuário deve ser redirecionado até a Home.
 
 
-### Pagina 4: Destacados
+### Página 3: Detalhe do dentista
 
-En esta pagina se debera renderizar las [Cards](/src/Components/Card.jsx) pertinentes a los dentistas destacados. Dicha información deberá estar almacenada dentro del localStorage del browser y ser consumida dentro de la pagina
+Essa página deve exibir os detalhes de um dentista especifico.
 
-* Se deberá estar en la ruta `/favs`.
-
-
+O seguinte deve ser levado em consideração:
+* Deve estar no caminho `/dentist/:id`.
+* A página deve indicar pelo menos as seguintes informações:
+  * Nome 
+  * Sobrenome
+  * Matricula (id)
+  * Nome do usuário
 
 ## Resultado final
 
-Te dejamos un video como ejemplo de cómo debería funcionar tu aplicación, en la carpeta [public](/public/)
+Deixamos um exemplo de como deve funcionar a sua aplicação na [vercel](https://ctd-fe3-final-solution.vercel.app/home)
