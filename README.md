@@ -25,7 +25,7 @@ git clone https://github.com/DigitalHouseBrasil/CTD-FE3-Checkpoint2-Template
 cd CTD-FE3-Checkpoint2-Template
 
 # Elimine os links do repositório de DH
-git remove rm origin
+git remote rm origin
 
 # Adicione seu projeto a sua conta do github, ajuste o link para seu nome de usuário e repositório
 git remote add origin https://github.com/<nomedousuario>/<nomedoprojeto>
@@ -84,6 +84,10 @@ Rota para buscar os pacientes:
 
 Rota para o login
 ```https://dhodonto.ctdprojetos.com.br/auth```
+
+Para logar na aplicação, utilize:
+* Login: dentistaAdmin
+* Senha: admin123
 
 ## Entrega
 
