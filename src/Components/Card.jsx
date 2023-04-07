@@ -1,7 +1,7 @@
 import styles from "./Card.module.css";
 
-const Card = () => {
-
+const Card = (props) => {
+  const {nome, sobrenome} = props.dados;
   return (
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
@@ -16,7 +16,7 @@ const Card = () => {
           {/* Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
           que vem da API */}
           <a href={`/dentist/MatriculaDoDentista`}>
-            <h5 className={`card-title ${styles.title}`}>Nome e Sobrenome do dentista</h5>
+            <h5 className={`card-title ${styles.title}`}>{nome} {sobrenome}</h5>
           </a>
         </div>
       </div>
