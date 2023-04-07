@@ -9,7 +9,7 @@ import NotFound from "./Routes/NotFound";
 function App() {
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
+      {/* //Na linha seguinte deverá ser feito um teste se a aplicação teste
         // está em dark mode e deverá utilizar a classe dark ou light */}
       <div className={`{app light}`}>
         <Navbar />
