@@ -1,22 +1,22 @@
 import { useEffect , useState} from "react";
 import Card from "../Components/Card";
-import axios from "axios";
-/***import api from "../services";*/
+//import axios from "axios";
+import api from "../services/api";
 
 const Home = () => {
 
   const [dentista, setDentista] = useState([]);
-  const [nome, setNome] = useState("");
-  const [sobrenome, setSobrenome] = useState("");
-  const [matricula, setMatricula] = useState("");
-  const [usuario, setUsuario] = useState("");
-  
+  //const [nome, setNome] = useState("");
+  //const [sobrenome, setSobrenome] = useState("");
+  //const [matricula, setMatricula] = useState("");
+ // const [usuario, setUsuario] = useState("");
+
   async function getDentistas(){
     try {
-      const response = await axios("https://dhodonto.ctdprojetos.com.br/dentista");
+      const response = await api.get("/dentista");
 
       console.log(response.data);
-      
+      setDentista (response.data);
     } catch (error) {
       console.log(error)
     }
@@ -36,12 +36,11 @@ const Home = () => {
       <div className="card-grid container">
         {dentista.map((d)=>(
           <div key={d.matricula}>
-            
+        <Card dados={d} />
+
           </div>
         ))}
-        <Card 
         
-        />
         
       </div>
     </>
