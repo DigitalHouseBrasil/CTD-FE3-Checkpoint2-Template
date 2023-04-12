@@ -1,6 +1,10 @@
+import { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/auth-context";
 
 const Navbar = () => {
+  const { stsLogin, removeUserStorage } = useContext(AuthContext);
 
   return (
     <header className="sticky-top">
@@ -45,8 +49,12 @@ const Navbar = () => {
                 ao formulário de login
                 O botão de logout deverá ser testado darkmode
                 se sim, btn-dark, se não, btn-light */}
-                <a className="nav-link" href="/login">
-                  Login
+                <a className="nav-link" href={stsLogin === "Login" ? "/login" : "/home"}
+                onClick={() => {
+                  if(stsLogin === "Logout")
+                    removeUserStorage();
+                  }}>
+                  {stsLogin}
                 </a>
               </li>
               <li className={`nav-item`}>

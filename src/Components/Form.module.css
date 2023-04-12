@@ -13,11 +13,3 @@
 .inputSpacing+.inputSpacing{
   margin: 1rem 0;
 }
-
-.loginForm{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 300px;
-  margin: 0 auto;
-}

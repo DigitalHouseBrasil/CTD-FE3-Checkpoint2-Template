@@ -3,16 +3,10 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    const response = localStorage.getItem("ctd_username");
-    setName(response);
-  }, []);
-
-  function saveName(username) {
-    setName(username);
-    localStorage.setItem("ctd_username", username);
+  const [stsLogin, setStsLogin] = useState("Login");
+  
+  function saveEmail(email) {
+    localStorage.setItem("ctd_email", email);
   }
 
   function saveToken(token) {
@@ -20,13 +14,17 @@ const AuthProvider = ({ children }) => {
   }
 
   function removeUserStorage() {
-    localStorage.removeItem("ctd_username");
+    localStorage.removeItem("ctd_email");
     localStorage.removeItem("ctd_token");
+  }
+
+  function setEstadoLogin(login){
+    setStsLogin(login);
   }
 
   return (
     <AuthContext.Provider
-      value={{ name, saveName, removeUserStorage, saveToken }}
+      value={{ saveEmail, removeUserStorage, saveToken, stsLogin, setEstadoLogin }}
     >
       {children}
     </AuthContext.Provider>

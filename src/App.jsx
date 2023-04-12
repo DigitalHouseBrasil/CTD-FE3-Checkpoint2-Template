@@ -6,7 +6,6 @@ import Login from "./Routes/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Detail from "./Routes/Detail";
 import NotFound from "./Routes/NotFound";
-import AuthProvider from "./contexts/auth-context";
 import { useContext } from "react";
 import { ThemeContext } from "./contexts/theme-context";
 
@@ -19,7 +18,6 @@ function App() {
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar a classe dark ou light */}
       <div className={`{app ${theme}}`}>
-        <AuthProvider>
           <Navbar />
           <main>
             <Outlet />
@@ -33,7 +31,6 @@ function App() {
             </BrowserRouter>
           </main>
           <Footer />
-        </AuthProvider>
       </div>
     </>
   );

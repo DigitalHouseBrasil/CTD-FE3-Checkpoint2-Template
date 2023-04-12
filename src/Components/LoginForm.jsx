@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const { saveName, saveToken } = useContext(AuthContext);
+  const { saveEmail, saveToken, setEstadoLogin } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,11 +17,18 @@ const LoginForm = () => {
     try {
       const response = await axios.post("https://dhodonto.ctdprojetos.com.br/auth", { username: email, password: password });
       console.log(response.data);
+      saveEmail(email);
       saveToken(response.data.token);
+      setEstadoLogin("Logout");
       navigate("/home");
     } catch (error) {
       alert("Erro ao logar");
     }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    logar();
   }
 
   return (
@@ -32,7 +39,7 @@ const LoginForm = () => {
         className={`text-center card container ${styles.card}`}
       >
         <div className={`card-body ${styles.CardBody}`}>
-          <div className="styles.loginForm">
+          <form onSubmit={handleSubmit}>
             <input
               className={`form-control ${styles.inputSpacing}`}
               placeholder="Login"
@@ -50,10 +57,11 @@ const LoginForm = () => {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="btn btn-primary" onClick={logar}>
+            <button className="btn btn-primary" type="submit">
               Send
-            </button>        </div>
-          </div>
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );
