@@ -1,15 +1,28 @@
 import styles from "./Form.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/auth-context";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const handleSubmit = (e) => {
-    //Nesse handlesubmit você deverá usar o preventDefault,
-    //enviar os dados do formulário e enviá-los no corpo da requisição 
-    //para a rota da api que faz o login /auth
-    //lembre-se que essa rota vai retornar um Bearer Token e o mesmo deve ser salvo
-    //no localstorage para ser usado em chamadas futuras
-    //Com tudo ocorrendo corretamente, o usuário deve ser redirecionado a página principal,com react-router
-    //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
-  };
+  const { saveName, saveToken } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  async function logar() {
+    try {
+      const response = await axios.post("https://dhodonto.ctdprojetos.com.br/auth", { username: email, password: password });
+      console.log(response.data);
+      saveToken(response.data.token);
+      navigate("/home");
+    } catch (error) {
+      alert("Erro ao logar");
+    }
+  }
 
   return (
     <>
@@ -19,12 +32,14 @@ const LoginForm = () => {
         className={`text-center card container ${styles.card}`}
       >
         <div className={`card-body ${styles.CardBody}`}>
-          <form onSubmit={handleSubmit}>
+          <div className="styles.loginForm">
             <input
               className={`form-control ${styles.inputSpacing}`}
               placeholder="Login"
               name="login"
               required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <input
               className={`form-control ${styles.inputSpacing}`}
@@ -32,12 +47,13 @@ const LoginForm = () => {
               name="password"
               type="password"
               required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="btn btn-primary" type="submit">
+            <button className="btn btn-primary" onClick={logar}>
               Send
-            </button>
-          </form>
-        </div>
+            </button>        </div>
+          </div>
       </div>
     </>
   );
