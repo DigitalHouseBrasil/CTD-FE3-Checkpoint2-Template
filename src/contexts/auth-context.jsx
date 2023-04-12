@@ -3,16 +3,19 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
-  const [name, setName] = useState("");
+  const [stsLogin, setStsLogin] = useState("Login");
 
   useEffect(() => {
-    const response = localStorage.getItem("ctd_username");
-    setName(response);
+    const token = localStorage.getItem("ctd_token");
+    console.log("Token no contexto: " + token);
+    if(token == null)
+      setStsLogin("Login");
+    else
+      setStsLogin("Logout");
   }, []);
-
-  function saveName(username) {
-    setName(username);
-    localStorage.setItem("ctd_username", username);
+  
+  function saveEmail(email) {
+    localStorage.setItem("ctd_email", email);
   }
 
   function saveToken(token) {
@@ -20,13 +23,17 @@ const AuthProvider = ({ children }) => {
   }
 
   function removeUserStorage() {
-    localStorage.removeItem("ctd_username");
+    localStorage.removeItem("ctd_email");
     localStorage.removeItem("ctd_token");
+  }
+
+  function setEstadoLogin(login){
+    setStsLogin(login);
   }
 
   return (
     <AuthContext.Provider
-      value={{ name, saveName, removeUserStorage, saveToken }}
+      value={{ saveEmail, removeUserStorage, saveToken, stsLogin, setEstadoLogin }}
     >
       {children}
     </AuthContext.Provider>
