@@ -4,6 +4,15 @@ export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [stsLogin, setStsLogin] = useState("Login");
+
+  useEffect(() => {
+    const token = localStorage.getItem("ctd_token");
+    console.log("Token no contexto: " + token);
+    if(token == null)
+      setStsLogin("Login");
+    else
+      setStsLogin("Logout");
+  }, []);
   
   function saveEmail(email) {
     localStorage.setItem("ctd_email", email);
