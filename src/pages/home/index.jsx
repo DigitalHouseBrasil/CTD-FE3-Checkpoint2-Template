@@ -1,7 +1,7 @@
 import { useEffect , useState} from "react";
-import Card from "../Components/Card";
+import Card from "../../Components/Card";
 //import axios from "axios";
-import api from "../services/api";
+import api from "../../services/api";
 
 const Home = () => {
 

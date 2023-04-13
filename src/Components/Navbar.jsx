@@ -16,7 +16,7 @@ const Navbar = () => {
       >
         <div className="container">
           {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
-          <a className={`navbar-brand ${styles.navbarBrand}`} href="/home">
+          <a className={`navbar-brand ${styles.navbarBrand}`} href="/">
             DH Odonto
           </a>
           <button
@@ -38,7 +38,7 @@ const Navbar = () => {
             <ul className="navbar-nav mb-2 mb-sm-0">
               <li className={`nav-item ${styles.navBarLink}`}>
                 {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
-                <a className="nav-link" href="/home">
+                <a className="nav-link" href="/">
                   Home
                 </a>
               </li>
@@ -49,7 +49,7 @@ const Navbar = () => {
                 ao formulário de login
                 O botão de logout deverá ser testado darkmode
                 se sim, btn-dark, se não, btn-light */}
-                <a className="nav-link" href={stsLogin === "Login" ? "/login" : "/home"}
+                <a className="nav-link" href={stsLogin === "Login" ? "/login" : "/"}
                 onClick={() => {
                   if(stsLogin === "Logout")
                     removeUserStorage();

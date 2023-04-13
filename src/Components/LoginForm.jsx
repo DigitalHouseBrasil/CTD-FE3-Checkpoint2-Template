@@ -23,7 +23,7 @@ const LoginForm = () => {
       saveEmail(email);
       saveToken(response.data.token);
       setEstadoLogin("Logout");
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       alert("Erro ao logar");
     }
