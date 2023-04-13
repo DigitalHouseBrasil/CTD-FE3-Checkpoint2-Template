@@ -16,8 +16,8 @@ const LoginForm = () => {
   async function logar() {
     try {
       const response = await api.post("/auth",{ 
-        username,
-        password,
+        username: email,
+        password: password,
     })
       console.log(response.data);
       saveEmail(email);
