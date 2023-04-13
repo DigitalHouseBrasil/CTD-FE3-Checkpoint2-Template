@@ -1,7 +1,7 @@
 import styles from "./Form.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/auth-context";
-import axios from "axios";
+import api from "../services/api"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,10 @@ const LoginForm = () => {
 
   async function logar() {
     try {
-      const response = await axios.post("https://dhodonto.ctdprojetos.com.br/auth", { username: email, password: password });
+      const response = await api.post("/auth",{ 
+        username,
+        password,
+    })
       console.log(response.data);
       saveEmail(email);
       saveToken(response.data.token);
@@ -30,7 +33,6 @@ const LoginForm = () => {
     e.preventDefault();
     logar();
   }
-
   return (
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
