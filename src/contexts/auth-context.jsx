@@ -10,8 +10,10 @@ const AuthProvider = ({ children }) => {
     console.log("Token no contexto: " + token);
     if(token == null)
       setStsLogin("Login");
+      
     else
       setStsLogin("Logout");
+      
   }, []);
   
   function saveEmail(email) {
