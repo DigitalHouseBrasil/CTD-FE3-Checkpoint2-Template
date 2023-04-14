@@ -1,4 +1,4 @@
-import DetailCard from "../Components/DetailCard";
+import DetailCard from "../../Components/DetailCard";
 
 const Detail = () => {
   return (
@@ -8,4 +8,4 @@ const Detail = () => {
   )
 }
 
-export default Detail
+export default Detail;

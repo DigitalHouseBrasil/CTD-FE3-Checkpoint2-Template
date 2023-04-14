@@ -1,7 +1,32 @@
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Card.module.css";
+import { useEffect } from "react";
 
-const Card = () => {
+//import {useState, useEffect} from 'react'
 
+const Card = (props) => {
+  const {nome, sobrenome, usuario, matricula} = props.dados;
+//  const {matricula, setMatricula} = useState("")
+  const navigate = useNavigate()
+  
+useEffect(() => {
+  const token = localStorage.getItem("ctd_token");
+  
+
+  console.log("Token no contexto: " + token);
+  if(token == null){
+    navigate("/login")
+  }
+  else{
+    
+  }
+}, []);
+
+  //useEffect(() => {
+   // const response = localStorage.getItem("@dentista_matricula");
+   // saveMatricula(response);
+  //}, []);
+  
   return (
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
@@ -15,9 +40,10 @@ const Card = () => {
         <div className={`card-body ${styles.CardBody}`}>
           {/* Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
           que vem da API */}
-          <a href={`/dentist/MatriculaDoDentista`}>
-            <h5 className={`card-title ${styles.title}`}>Nome e Sobrenome do dentista</h5>
-          </a>
+          <Link to = {`/detail/${matricula}`}>
+        
+            <h5 className={`card-title ${styles.title}`}>{nome} {sobrenome}</h5>
+          </Link>
         </div>
       </div>
     </>

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import Card from "../Components/Card";
 
-const Home = () => {
+const NotFound = () => {
 
   useEffect(() => {
     //Nesse useEffect, deverá ser obtido todos os dentistas da API
@@ -11,12 +10,12 @@ const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
+      <h1>Página não encontrada</h1>
       <div className="card-grid container">
-        <Card />
+        <p>Tente outra rota.</p>
       </div>
     </>
   );
 };
 
-export default Home;
+export default NotFound;
