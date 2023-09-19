@@ -10,7 +10,7 @@ import App from "../App"
 const renderWithContext = (ui, providerValue)=>{
     return render(
         <BrowserRouter>
-            <ContextProvider value={providerValue || {theme: "light", data: []}} >   
+            <ContextProvider value={providerValue || {theme: "liaght", data: []}} >   
                 {ui}
             </ContextProvider>
         </BrowserRouter>
