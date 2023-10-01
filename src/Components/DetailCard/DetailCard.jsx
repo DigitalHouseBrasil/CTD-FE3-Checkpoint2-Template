@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import {useParams} from "react-router-dom"
 import ScheduleFormModal from "../ScheduleFormModal/ScheduleFormModal";
 import styles from "./DetailCard.module.css";
 
 const DetailCard = () => {
+  const {matricula} = useParams();
 
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 

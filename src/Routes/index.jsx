@@ -14,7 +14,7 @@ export function RouteList() {
                 <Route path='/home' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='*' element={<NotFound />} />
-                <Route path='/MatriculaDoDentista' element={<Detail />} />
+                <Route path='/dentist/:matricula' element={<Detail />} />
                 </Route>
             </Routes>
         </BrowserRouter>
