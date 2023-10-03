@@ -1,31 +1,32 @@
-import { createContext, useState, useEffect, useCallback } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const AppContext = createContext();
 
-export function AppContextProvider({children}) {
+export function AppContextProvider({ children }) {
     const [dentistas, setDentistas] = useState([]);
 
-    const getDentistas = useCallback ((() => async () => {
+    const getDentistas = async () => {
         try {
-          const res = await fetch('https://dhodonto.ctd.academy/dentista');
-          if (!res.ok) {
-            throw new Error(`Failed to fetch dentista data: ${res.statusText}`);
-          }
-          const data = await res.json();
-          setDentistas(data);
+            const res = await fetch('https://dhodonto.ctd.academy/dentista');
+            if (!res.ok) {
+                throw new Error(`Failed to fetch dentista data: ${res.statusText}`);
+            }
+            const data = await res.json();
+            setDentistas(data);
         } catch (error) {
-          console.error('Error fetching dentistas:', error);
+            console.error('Error fetching dentistas:', error);
         }
-        return dentistas;
-      }),[dentistas]);
-    
-      useEffect(() => {
-        //Nesse useEffect, deverá ser obtido todos os dentistas da API
-        //Armazena-los em um estado para posteriormente fazer um map
-        //Usando o componente <Card />
+    };
+
+    useEffect(() => {
         getDentistas();
-    
-      }, [getDentistas]);
-    
+    }, [])
+
+
+    return (
+        <AppContext.Provider value={{ dentistas, getDentistas }}>
+            {children}
+        </AppContext.Provider>
+    )
 
 }
