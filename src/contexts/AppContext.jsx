@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import baseUrl from '../Components/Utils/api';
 
 export const AppContext = createContext();
 
@@ -7,7 +8,7 @@ export function AppContextProvider({ children }) {
 
     const getDentistas = async () => {
         try {
-            const res = await fetch('https://dhodonto.ctd.academy/dentista');
+            const res = await fetch(`${baseUrl}/dentista`);
             if (!res.ok) {
                 throw new Error(`Failed to fetch dentista data: ${res.statusText}`);
             }
@@ -22,9 +23,14 @@ export function AppContextProvider({ children }) {
         getDentistas();
     }, [])
 
+    const buscaDentistaPelaMatricula = (matricula) => {
+        const dentista = dentistas.find(dentistas.matricula === matricula);
+        return dentista;
+      }
+
 
     return (
-        <AppContext.Provider value={{ dentistas, getDentistas }}>
+        <AppContext.Provider value={{ dentistas, buscaDentistaPelaMatricula, getDentistas }}>
             {children}
         </AppContext.Provider>
     )

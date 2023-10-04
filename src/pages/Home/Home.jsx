@@ -1,18 +1,27 @@
-import { useContext } from "react";
+import {useState, useEffect} from 'react';
 import Card from "../../Components/Card/Card";
-import { AppContext } from '../../contexts/AppContext';
+import baseUrl from '../../Components/Utils/api';
 
 const Home = () => {
-  const { dentistas } = useContext(AppContext);
+  const [dentista, setDentista] = useState([]);
+
+  useEffect(() => {
+    try {
+      fetch(`${baseUrl}/dentista`)
+        .then((res) => res.json())
+        .then((data) => setDentista(data));
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   return (
     <>
       <h1>Home</h1>
       <div className="card-grid container">
-        {dentistas.length
-          ?
-          dentistas.map((dentista, index) => (
-            <Card key={index} dentista={dentista} />
+        {dentista.length
+          ? dentista.map((dentista) => (
+            <Card {...dentista} key={dentista.matricula} />
           ))
           : null}
       </div>
