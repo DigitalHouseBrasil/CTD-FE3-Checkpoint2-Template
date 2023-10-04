@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import Card from "../Components/Card/Card";
-import { AppContext } from '../contexts/AppContext';
+import Card from "../../Components/Card/Card";
+import { AppContext } from '../../contexts/AppContext';
 
 const Home = () => {
   const { dentistas } = useContext(AppContext);
