@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useContext } from "react";
 import { ContextGlobal } from "../../contexts/global.context";
-import {
-  getTokenFromStorage,
-  setTokenInStorage,
-} from "../../services/localStorage/localStorage.service";
+import { getTokenFromStorage, setTokenInStorage, } from "../../services/localStorage/localStorage.service";
 import baseUrl from "../Utils/api";
 
 const LoginForm = () => {
@@ -17,6 +14,10 @@ const LoginForm = () => {
   const { validaUsuarioLogado } = useAuth();
   const [username, setUserName] = useState("");
   const [password, setPassWord] = useState("");
+
+  const { theme } = useContext(ContextGlobal);
+  const isDarkMode = theme === "dark" || false;
+  
 
   let connectWithApi = async () => {
     try {
@@ -72,7 +73,9 @@ const LoginForm = () => {
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
-      <div className={`text-center card container ${styles.card}`}>
+      <div className={`text-center card container ${styles.card} ${isDarkMode ? styles.cardDark : ""
+        }`}
+      >
         <div className={`card-body ${styles.CardBody}`}>
           <form onSubmit={validateInputsFromUser}>
             <input
@@ -81,7 +84,7 @@ const LoginForm = () => {
               name="login"
               value={username}
               onChange={(e) => setUserName(e.target.value)}
-              //required
+            //required
             />
 
             <input
@@ -91,7 +94,7 @@ const LoginForm = () => {
               type="password"
               value={password}
               onChange={(e) => setPassWord(e.target.value)}
-              //required
+            //required
             />
             <span ref={avisoDeLogErrado} className="text-danger">
               Verifique suas informações novamente.
