@@ -1,13 +1,19 @@
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";    
 
+import { useContext } from "react";
+import { ContextGlobal } from "../../contexts/global.context";
+
 const Card = ({ nome, sobrenome, matricula }) => {
+
+  const { theme } = useContext(ContextGlobal);
+  const isDarkMode = theme === "dark" || false;
 
   return (
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
-      <div className={`card`}>
+      <div className={`card ${isDarkMode ? styles.cardDark : ""}`}>
         <img
           className="card-img-top"
           src="/images/doctor.jpg"
