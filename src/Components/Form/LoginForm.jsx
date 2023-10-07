@@ -17,6 +17,7 @@ const LoginForm = () => {
 
   const { theme } = useContext(ContextGlobal);
   const isDarkMode = theme === "dark" || false;
+  
 
   let connectWithApi = async () => {
     try {
