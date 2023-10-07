@@ -7,25 +7,28 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import { AppContextProvider } from "../contexts/AppContext";
 import { AuthContextProvider } from "../contexts/AuthContext";
 import { ProtectedRoute } from "../Components/ProtectedRoute";
+import { ContextProvider } from "../contexts/global.context";
 
 export function RouteList() {
-  return (
-    <BrowserRouter>
-      <AuthContextProvider>
-        <ProtectedRoute>
-          <AppContextProvider>
-            <Routes>
-              <Route path="/" element={<DefaultLayout />}>
-                <Route path="/" element={<Login />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="*" element={<NotFound />} />
-                <Route path="/dentista/:id" element={<Detail />} />
-              </Route>
-            </Routes>
-          </AppContextProvider>
-        </ProtectedRoute>
-      </AuthContextProvider>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <ContextProvider>
+                <AuthContextProvider>
+                    <ProtectedRoute>
+                        <AppContextProvider>
+                            <Routes>
+                                <Route path="/" element={<DefaultLayout />}>
+                                    <Route path="/" element={<Login />} />
+                                    <Route path="/home" element={<Home />} />
+                                    <Route path="/login" element={<Login />} />
+                                    <Route path="*" element={<NotFound />} />
+                                    <Route path="/dentista/:id" element={<Detail />} />
+                                </Route>
+                            </Routes>
+                        </AppContextProvider>
+                    </ProtectedRoute>
+                </AuthContextProvider>
+            </ContextProvider>
+        </BrowserRouter>
+    );
 }
