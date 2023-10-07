@@ -8,6 +8,7 @@ import {
   getTokenFromStorage,
   setTokenInStorage,
 } from "../../services/localStorage/localStorage.service";
+import baseUrl from "../Utils/api";
 
 const LoginForm = () => {
   const { setLogin } = useContext(ContextGlobal);
@@ -31,10 +32,7 @@ const LoginForm = () => {
         }),
       };
 
-      const connectWithApi = await fetch(
-        "https://dhodonto.ctd.academy/auth",
-        body
-      );
+      const connectWithApi = await fetch(`${baseUrl}/auth`, body);
       if (!connectWithApi.ok) {
         avisoDeLogErrado.current.style.display = "block";
         throw new Error("Erro ao buscar as credenciais do usuario no BD");
@@ -55,7 +53,7 @@ const LoginForm = () => {
   let validateInputsFromUser = async (e) => {
     e.preventDefault();
     let passwordRegex = /^(?=.*\d)(?=.*[a-z]).{8,}$/;
-    if (username.length < 5 || passwordRegex.test(password) == false) {
+    if (username.length < 5 || passwordRegex.test(password) === false) {
       avisoDeLogErrado.current.style.display = "block";
     } else {
       connectWithApi();
