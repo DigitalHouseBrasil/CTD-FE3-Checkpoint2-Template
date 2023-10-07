@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import baseUrl from '../Utils/api';
 import ScheduleFormModal from "../ScheduleFormModal/ScheduleFormModal";
 import styles from "./DetailCard.module.css";
+import { ContextGlobal } from "../../contexts/global.context";
 
 const DetailCard = () => {
   const { id } = useParams();
   const [dentista, setDentista] = useState(undefined);
 
-
-
+  const { theme } = useContext(ContextGlobal);
+  const isDarkMode = theme === "dark" || false;
 
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 
@@ -35,7 +36,7 @@ const DetailCard = () => {
             {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
             <div
-              className={`card-body row`}
+              className={`card-body row ${isDarkMode ? styles.cardDark : ""}`}
             >
               <div className="col-sm-12 col-lg-6">
                 <img
@@ -60,8 +61,8 @@ const DetailCard = () => {
                   <button
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
-                    className={`btn btn-light ${styles.button
-                      }`}
+                    className={`btn btn-${isDarkMode ? "dark" : "light"} ${styles.button
+                    }`}
                   >
                     Marcar consulta
                   </button>
