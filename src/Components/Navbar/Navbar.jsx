@@ -1,26 +1,24 @@
 import styles from "./Navbar.module.css";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ContextGlobal } from "../../contexts/global.context";
 import { removeTokenFromStorage } from "../../services/localStorage/localStorage.service";
 
-
-
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { theme, setDarkTheme, setLightTheme, login, setLogout } =
+    useContext(ContextGlobal);
+  const isDarkMode = theme === "dark" || false;
 
-const {theme, setDarkTheme, setLightTheme, login, setLogout} = useContext(ContextGlobal);
-const isDarkMode = theme === "dark" || false;
+  const changeTheme = () => {
+    if (isDarkMode) setLightTheme();
+    else setDarkTheme();
+  };
 
-const changeTheme = () =>{
-  if (isDarkMode) setLightTheme();
-  else setDarkTheme();
-};
-
-const logout =() =>{
-  setLogout();
-  removeTokenFromStorage();
-};
+  const logout = () => {
+    setLogout();
+    removeTokenFromStorage();
+  };
 
   return (
     <header className="sticky-top">
@@ -63,16 +61,18 @@ const logout =() =>{
               <li className={`nav-item ${styles.navBarLink}`}>
                 {login ? (
                   <button
-                  onCLick ={()=> logout()}
-                  className={`btn btn-${isDarkMode ? "dark" : "light"}`}
+                    onClick={() => {
+                      logout();
+                      navigate("/");
+                    }}
+                    className={`btn btn-${isDarkMode ? "dark" : "light"}`}
                   >
                     Logout
                   </button>
-
-                ):(
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
+                ) : (
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
                 )}
               </li>
               <li className={`nav-item`}>
@@ -81,9 +81,10 @@ const logout =() =>{
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
                 <button
-                  className={`btn btn-${isDarkMode ? "light" : "dark"} ${styles.btnStyle
-                    }`}
-                    onClick={changeTheme}
+                  className={`btn btn-${isDarkMode ? "light" : "dark"} ${
+                    styles.btnStyle
+                  }`}
+                  onClick={changeTheme}
                 >
                   {isDarkMode ? "☀" : "🌙"}{" "}
                 </button>

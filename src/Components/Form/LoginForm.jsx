@@ -2,11 +2,18 @@ import styles from "./Form.module.css";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { useContext } from "react";
+import { ContextGlobal } from "../../contexts/global.context";
+import {
+  getTokenFromStorage,
+  setTokenInStorage,
+} from "../../services/localStorage/localStorage.service";
 
 const LoginForm = () => {
-  const { validaUsuarioLogado } = useAuth();
+  const { setLogin } = useContext(ContextGlobal);
   const navigate = useNavigate();
   const avisoDeLogErrado = useRef(null);
+  const { validaUsuarioLogado } = useAuth();
   const [username, setUserName] = useState("");
   const [password, setPassWord] = useState("");
 
@@ -34,9 +41,10 @@ const LoginForm = () => {
       }
       const getResponse = await connectWithApi.json();
       if (getResponse.token) {
+        console.log(getTokenFromStorage());
         validaUsuarioLogado(username, getResponse.token);
         navigate("/home");
-        localStorage.setItem("dh_token", getResponse.token);
+        setTokenInStorage(getResponse.token);
         alert("Usuario logou corretamente");
       }
     } catch (error) {
@@ -44,13 +52,14 @@ const LoginForm = () => {
     }
   };
 
-  let validateInputsFromUser = (e) => {
+  let validateInputsFromUser = async (e) => {
     e.preventDefault();
     let passwordRegex = /^(?=.*\d)(?=.*[a-z]).{8,}$/;
     if (username.length < 5 || passwordRegex.test(password) == false) {
       avisoDeLogErrado.current.style.display = "block";
     } else {
       connectWithApi();
+      setLogin();
     }
   };
   //   //Nesse handlesubmit você deverá usar o preventDefault,
@@ -89,7 +98,11 @@ const LoginForm = () => {
             <span ref={avisoDeLogErrado} className="text-danger">
               Verifique suas informações novamente.
             </span>
-            <button className="btn btn-primary" type="submit">
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={validateInputsFromUser}
+            >
               Send
             </button>
           </form>

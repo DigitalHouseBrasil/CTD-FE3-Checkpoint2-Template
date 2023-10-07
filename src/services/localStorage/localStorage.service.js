@@ -1,12 +1,12 @@
 export const getTokenFromStorage = () => {
-    const localData = localStorage.getItem("token");
-    return localData ? localData : null;
-}
+  const localData = localStorage.getItem("dh_token");
+  return localData ? localData : null;
+};
 
 export const setTokenInStorage = (token) => {
-    localStorage.setItem("token", token);
-}
+  localStorage.setItem("dh_token", token);
+};
 
 export const removeTokenFromStorage = () => {
-    localStorage.removeItem("token");
-}
+  localStorage.removeItem("dh_token");
+};

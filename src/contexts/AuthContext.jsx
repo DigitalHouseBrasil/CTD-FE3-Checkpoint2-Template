@@ -13,8 +13,6 @@ export function AuthContextProvider({ children }) {
     setToken(tokenValidated);
     const userValidated = username;
     setUserName(userValidated);
-    // console.log(localStorage.getItem(token));
-    console.log(userValidated);
     return;
   };
 
