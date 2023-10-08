@@ -39,7 +39,6 @@ const LoginForm = () => {
       }
       const getResponse = await connectWithApi.json();
       if (getResponse.token) {
-        console.log(getTokenFromStorage());
         validaUsuarioLogado(username, getResponse.token);
         navigate("/home");
         setTokenInStorage(getResponse.token);
