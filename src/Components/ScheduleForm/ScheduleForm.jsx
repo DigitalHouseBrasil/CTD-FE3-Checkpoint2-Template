@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import baseUrl from "../Utils/api";
 import styles from "./ScheduleForm.module.css";
 import { ContextGlobal } from "../../contexts/global.context";
@@ -10,8 +9,6 @@ const ScheduleForm = () => {
   const [dentistsFromForm, setdentistsFromForm] = useState("");
   const [patientsFromForm, setpatientsFromForm] = useState("");
   const [dateFromForm, setDateFromForm] = useState("");
-  const navigate = useNavigate();
-  const modalRef = useRef(null);
 
   const { theme } = useContext(ContextGlobal);
   const isDarkMode = theme === "dark" || false;
@@ -66,21 +63,15 @@ const ScheduleForm = () => {
           `Consulta marcada com sucesso com o doutor ${showConsultMarket.dentista.nome}`
         );
       }
-      // redirectsToHome();
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const fecharModal = () => {
-  //   // Use a referência do modal para fechar
-  //   const modal = modalRef.current.style.display = 'none';
-  //   modal.hide();
-  // };
-
-  // const redirectsToHome = () => {
-  //   navigate("/home");
-  // };
+  const redirectsToHome = () => {
+    setTimeout(() => {
+      window.location.href = "/home";
+    }, 1000);
+  };
 
   return (
     <div className={`text-center container`}>
@@ -154,6 +145,7 @@ const ScheduleForm = () => {
                 styles.button
               }`}
               type="submit"
+              onClick={redirectsToHome}
             >
               Schedule
             </button>
