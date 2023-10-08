@@ -25,9 +25,8 @@ const Navbar = () => {
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
-        className={`navbar navbar-expand-sm ${
-          isDarkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"
-        }`}
+        className={`navbar navbar-expand-sm ${isDarkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"
+          }`}
         aria-label="Third navbar example"
       >
         <div className="container">
@@ -81,9 +80,8 @@ const Navbar = () => {
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
                 <button
-                  className={`btn btn-${isDarkMode ? "light" : "dark"} ${
-                    styles.btnStyle
-                  }`}
+                  className={`btn btn-${isDarkMode ? "light" : "dark"} ${styles.btnStyle
+                    }`}
                   onClick={changeTheme}
                 >
                   {isDarkMode ? "☀" : "🌙"}{" "}
