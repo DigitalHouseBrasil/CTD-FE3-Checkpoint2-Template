@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import baseUrl from "../Utils/api";
 import styles from "./ScheduleForm.module.css";
+import { ContextGlobal } from "../../contexts/global.context";
 
 const ScheduleForm = () => {
   const [dentistsFromApi, setDentistsFromApi] = useState([]);
@@ -11,6 +12,14 @@ const ScheduleForm = () => {
   const [dateFromForm, setDateFromForm] = useState("");
   const navigate = useNavigate();
   const modalRef = useRef(null);
+
+  const { theme } = useContext(ContextGlobal);
+  const isDarkMode = theme === "dark" || false;
+
+  useEffect(() => {
+    //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
+    //e pacientes e carregar os dados em 2 estados diferentes
+  }, []);
 
   useEffect(() => {
     let getResponseFromApiDentist = async () => {
@@ -74,8 +83,12 @@ const ScheduleForm = () => {
   // };
 
   return (
-    <>
-      <div className={`text-center container}`}>
+    <div className={`text-center container`}>
+      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
+        // está em dark mode e deverá utilizar o css correto */}
+      <div
+        className={`text-center container ${isDarkMode ? styles.cardDark : ""}`}
+      >
         <form onSubmit={handleSubmit}>
           <div className={`row ${styles.rowSpacing}`}>
             <div className="col-sm-12 col-lg-6">
@@ -136,13 +149,18 @@ const ScheduleForm = () => {
           <div className={`row ${styles.rowSpacing}`}>
             {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
-            <button className={`btn btn-light ${styles.button}`} type="submit">
+            <button
+              className={`btn btn-${isDarkMode ? "dark" : "light"} ${
+                styles.button
+              }`}
+              type="submit"
+            >
               Schedule
             </button>
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

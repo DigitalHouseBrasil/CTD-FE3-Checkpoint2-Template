@@ -7,24 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.not-found {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 90vw;
-  height: 70vh;
-  align-items: center;
-  justify-content: cent
-}
-
-.not-found img{
-  object-fit: cover;
-  width: 30vw;
-  height: auto;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

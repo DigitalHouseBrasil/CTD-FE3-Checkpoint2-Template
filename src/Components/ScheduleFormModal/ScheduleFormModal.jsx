@@ -1,14 +1,11 @@
+import { useContext } from "react";
 import ScheduleForm from "../ScheduleForm/ScheduleForm";
-import { useNavigate } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { ContextGlobal } from "../../contexts/global.context";
+import styles from "./ScheduleFormModal.module.css";
+
 const ScheduleFormModal = () => {
-  // const navigate = useNavigate();
-  // const modalRef = useRef(null);
-  // useEffect(() => {
-  //   if (modalRef) {
-  //     modalRef.current.style.display = "none";
-  //   }
-  // }, [navigate]);
+  const { theme } = useContext(ContextGlobal);
+  const isDarkMode = theme === "dark" || false;
 
   return (
     <div
@@ -21,7 +18,7 @@ const ScheduleFormModal = () => {
       <div className="modal-dialog">
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
-        <div className={`modal-content`}>
+        <div className={`modal-content ${isDarkMode ? styles.DarkModal : ""}`}>
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="exampleModalLabel">
               Selecione o dentista, paciente e a data e hora
@@ -30,7 +27,9 @@ const ScheduleFormModal = () => {
             // está em dark mode e deverá utilizado o css correto */}
             <button
               type="button"
-              className={`btn-close`}
+              className={`btn-close ${
+                isDarkMode ? styles.closeButtonDark : ""
+              }`}
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
