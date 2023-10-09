@@ -12,35 +12,35 @@ code {
     monospace;
 }
 
-main{
+main {
   min-height: calc(100vh - 292px);
 }
 
-h1{
+h1 {
   text-align: center;
   padding: 2rem 0;
 }
 
-.navbar-nav{
+.navbar-nav {
   align-items: center;
 }
 
-.row{
+.row {
   align-items: center;
 }
 
-a{
+a {
   color: #000;
   text-decoration: none;
   margin: 5px;
   cursor: pointer;
 }
 
-a:hover{
+a:hover {
   color: rgb(136, 136, 136);
-} 
+}
 
-form{
+form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -48,11 +48,11 @@ form{
   margin: 0 auto;
 }
 
-.btn-light{
+.btn-light {
   background-color: rgb(214, 214, 214);
 }
 
-.card-grid{
+.card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.125rem;
@@ -61,15 +61,16 @@ form{
 }
 
 table {
- border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    display: table;
-    border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  display: table;
+  border: 1px solid #ccc;
 
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -79,32 +80,33 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-.dark{
+.dark {
   background-color: #12121296;
   color: white;
 }
-.dark > a {
+
+.dark>a {
   color: white;
 }
 
-.dark h5{
+.dark h5 {
   color: white;
 }
 
-@media(min-width: 786px) and (max-width: 1065px){
-  .card-grid{
+@media(min-width: 786px) and (max-width: 1065px) {
+  .card-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media(min-width: 574px) and (max-width: 785px){
-  .card-grid{
+@media(min-width: 574px) and (max-width: 785px) {
+  .card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media(max-width: 573px){
-  .card-grid{
+@media(max-width: 573px) {
+  .card-grid {
     grid-template-columns: 1fr;
   }
 }
